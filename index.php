@@ -25,8 +25,26 @@ include "koneksi.php";
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-dark">
                   <ul class="navbar-nav mb-2 mb-lg-0">
-                     <a href='logout.php'>logout</a>
-  <li class="nav-item dropdown">
+  <li class="nav-item">
+                        <a class="nav-link" href ="login.php">login admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href = "#">home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href = "#article">article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href = "#gallery">gallery</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href = "#Schedule">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href = "#About Me"> About Me</a>
+                    </li>
+                         <li class="nav-item dropdown">
+                      
     <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
       id="bd-theme"
       type="button"
@@ -55,25 +73,6 @@ include "koneksi.php";
           <i class="bi bi-circle-half me-2 opacity-50"></i>
           Otomatis
         </button>
-      </li>
-    </ul>
-  </li>
-</ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href = "#">home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href = "#article">article</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href = "#gallery">gallery</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a class="nav-link" href = "#Schedule">Schedule</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href = "#About Me"> About Me</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -128,7 +127,7 @@ include "koneksi.php";
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="photo-1609630875171-b1321377ee65.avif" class="d-block w-100" alt="...">
+                        <img src="Screenshot (7).png" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="am-syahrul-L3AxyzU55gA-unsplash.jpg" class="d-block w-100" alt="...">
@@ -223,12 +222,12 @@ include "koneksi.php";
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Accordion Item #1
+                  latar belakang pendidikan
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>udinus semarang </strong> saya adalah mhs udinus semester 3 
                 </div>
               </div>
             </div>
