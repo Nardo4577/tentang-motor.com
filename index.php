@@ -124,21 +124,18 @@ include "koneksi.php";
     <section id="gallery" class="text-center p-5 bg-danger-subtle">
  
           
-           <h1 class="fw-bold display-4 pb-3">gallery</h1>
+        <h1 class="fw bold display-4 pb-3">gallery</h1>
 <div id="carouselExample" class="carousel slide">
     
     <div class="carousel-inner">
         <?php
-        // Pastikan nama tabel benar (galeri)
         $sql = "SELECT * FROM galeri ORDER BY tanggal DESC";
         $hasil = $conn->query($sql);
 
-        // Variabel penanda untuk item pertama
         $active = true;
 
         while ($row = $hasil->fetch_assoc()) {
-            // Logika: Jika ini putaran pertama, pakai class "active". 
-            // Jika bukan, kosongkan.
+         
             $status = ($active) ? "active" : "";
         ?>
             
@@ -147,7 +144,6 @@ include "koneksi.php";
             </div>
 
         <?php
-            // Set active jadi false agar gambar kedua, ketiga, dst tidak ada class active
             $active = false; 
         } 
         ?>
