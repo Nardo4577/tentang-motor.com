@@ -33,7 +33,7 @@ if (!isset($_SESSION['username'])) {
     				<!-- nav begin -->
     <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top bg-danger-subtle">
     <div class="container">
-        <a class="navbar-brand" target="_blank" href=".">My Daily Journal</a>
+        <a class="navbar-brand" target="_blank" href=".">tentang_mesin.com</a>
         <button
         class="navbar-toggler"
         type="button"
@@ -53,13 +53,18 @@ if (!isset($_SESSION['username'])) {
 <li class="nav-item">
     <a class="nav-link" href="admin.php?page=article">Article</a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" href="admin.php?page=galeri">galeri</a>
+</li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
+                    <li><a class="dropdown-item" href="admin.php?page=profile">profile</a></li> 
                 </ul>
+              
             </li> 
         </ul>
         </div>
@@ -78,6 +83,7 @@ if (!isset($_SESSION['username'])) {
             }
 
             echo '<h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">' . $page . '</h4>';
+ 
             include($page . ".php");
             ?>
         </div> 

@@ -1,0 +1,252 @@
+<?php 
+function upload_foto($File){    
+	$uploadOk = 1;
+	$hasil = array();
+	$message = '';
+ 
+	//File properties:
+	$FileName = $File['name'];
+	$TmpLocation = $File['tmp_name'];
+	$FileSize = $File['size'];
+
+	//Figure out what kind of file this is:
+	$FileExt = explode('.', $FileName);
+	$FileExt = strtolower(end($FileExt));
+
+	//Allowed files:
+	$Allowed = array('jpg', 'png', 'gif', 'jpeg');  
+
+	// Check file size
+	if ($FileSize > 500000) {
+		$message .= "Sorry, your file is too large, max 500KB. ";
+		$uploadOk = 0;
+	}
+
+	// Allow certain file formats
+	if(!in_array($FileExt, $Allowed)){
+		$message .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. ";
+		$uploadOk = 0; 
+	}
+
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+		$message .= "Sorry, your file was not uploaded. ";
+		$hasil['status'] = false; 
+	}else{
+				//if everything is ok, try to upload file
+				//Create new filename:
+        $NewName = date("YmdHis"). '.' . $FileExt;
+        $UploadDestination = "". $NewName; 
+
+		if (move_uploaded_file($TmpLocation, $UploadDestination)) {
+			//echo "The file has been uploaded.";
+			$message .= $NewName;
+			$hasil['status'] = true; 
+		}else{
+			$message .= "Sorry, there was an error uploading your file. ";
+			$hasil['status'] = false; 
+		}
+	}
+	
+	$hasil['message'] = $message; 
+	return $hasil;
+}
+$username = $_SESSION['username'];
+?>
+<div class="container">
+    		<div class="row mb-2">
+        <div class="col-md-6">
+            						<div class="input-group">
+                <input type="text" id="search" class="form-control" placeholder="ketikan minimal 3 karakter">
+                <span class="input-group-text">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+             
+         </div>
+    </div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">
+  tambah_galeri
+</button>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th class="w-25">Judul</th>
+                        <th class="w-50">Gambar</th>
+                        <th class="w-25">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+        </div>
+        <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalTambahLabel">Tambah galeri</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="" enctype="multipart/form-data">
+
+      <div class="modal-body">
+												<div class="mb-3">
+														<label for="judul" class="form-label">Judul</label>
+                            <input type="text" class="form-control" name="judul" placeholder="Tuliskan Judul galeri" required>
+                        </div>
+                        <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="gambar" class="form-label">Gambar</label>
+                            <input type="file" class="form-control" name="gambar">
+                        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="submit" value="simpan" name="simpan" class="btn btn-primary">
+      </div>
+</form>
+    </div>
+  </div>
+</div>
+    </div>
+</div>
+<script>
+    function loadData(keyword = '') {
+        $.ajax({
+            url: "galeri_search.php",
+            type: "POST",
+            data: {
+                keyword: keyword
+            },
+            success: function(data) {
+                $("#result").html(data);
+            }
+        });
+    }
+
+    // load awal
+    loadData();
+    		// event pencarian
+    $("#search").on("keyup", function() {
+        let keyword = $(this).val();
+        if (keyword.length >= 3 || keyword.length === 0) {
+            loadData(keyword);
+        }
+    });
+</script>
+<?php
+
+
+//jika tombol simpan diklik
+if (isset($_POST['simpan'])) {
+    $judul = $_POST['judul'];
+    $tanggal = date("Y-m-d H:i:s");
+    $username = $_SESSION['username'];
+    $gambar = '';
+    $nama_gambar = $_FILES['gambar']['name'];
+
+    //jika ada file baru yang dikirim  
+    if ($nama_gambar != '') {
+        //panggil function upload_foto untuk cek detail file yg diupload user
+        //function ini memiliki keluaran sebuah array yang berisi status dan message
+        $cek_upload = upload_foto($_FILES["gambar"]);
+
+        //cek status upload file hasilnya true/false
+        if ($cek_upload['status']) {
+            //jika true maka message berisi nama file gambar
+            $gambar = $cek_upload['message'];
+        } else {
+            //jika true maka message berisi pesan error, tampilkan dalam alert
+            echo "<script>
+                alert('" . $cek_upload['message'] . "');
+                document.location='admin.php?page=galeri';
+            </script>";
+            die;
+        }
+    }
+
+    		//cek apakah ada id yang dikirimkan dari form
+    if (isset($_POST['id'])) {
+        //jika ada id, lakukan update data dengan id tersebut
+        $id = $_POST['id'];
+
+        if ($nama_gambar == '') {
+            //jika tidak ganti gambar
+            $gambar = $_POST['gambar_lama'];
+        } else {
+            //jika ganti gambar, hapus gambar lama
+            unlink("" . $_POST['gambar_lama']);
+        }
+
+        $stmt = $conn->prepare("UPDATE galeri
+                                SET 
+                                judul =?,
+                                gambar = ?,
+                                tanggal = ?,
+                                username = ?
+                                WHERE id = ?");
+
+        $stmt->bind_param("ssssi", $judul, $gambar, $tanggal, $username, $id);
+        $simpan = $stmt->execute();
+    } else {
+		    //jika tidak ada id, lakukan insert data baru
+        $stmt = $conn->prepare("INSERT INTO galeri (judul,gambar,tanggal,username)
+                                VALUES (?,?,?,?)");
+
+        $stmt->bind_param("ssss", $judul, $gambar, $tanggal, $username);
+        $simpan = $stmt->execute();
+    }
+    if ($simpan) {
+        echo "<script>
+            alert('Simpan data sukses');
+            document.location='admin.php?page=galeri';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Simpan data gagal');
+            document.location='admin.php?page=galeri';
+        </script>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+//jika tombol hapus diklik
+if (isset($_POST['hapus'])) {
+    $id = $_POST['id'];
+    $gambar = $_POST['gambar'];
+
+    if ($gambar != '') {
+        //hapus file gambar dari folder /img
+        unlink("" . $gambar);
+    }
+
+    $stmt = $conn->prepare("DELETE FROM galeri WHERE id =?");
+
+    $stmt->bind_param("i", $id);
+    $hapus = $stmt->execute();
+
+    if ($hapus) {
+        echo "<script>
+            alert('Hapus data sukses');
+            document.location='admin.php?page=galeri';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Hapus data gagal');
+            document.location='admin.php?page=galeri';
+        </script>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+ 
+?>

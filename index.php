@@ -122,36 +122,45 @@ include "koneksi.php";
 
     </section>
     <section id="gallery" class="text-center p-5 bg-danger-subtle">
-        <div class="container">
-            <h1 class="fw bold display-4 pb-3">gallery</h1>
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="Screenshot (7).png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="am-syahrul-L3AxyzU55gA-unsplash.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="zac-wolff-Ptx8G07I6xI-unsplash.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="max-itin-xlhl7rI2M4I-unsplash.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="ewan-z-bvUbSxRl4Wg-unsplash.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+ 
+          
+           <h1 class="fw-bold display-4 pb-3">gallery</h1>
+<div id="carouselExample" class="carousel slide">
+    
+    <div class="carousel-inner">
+        <?php
+        // Pastikan nama tabel benar (galeri)
+        $sql = "SELECT * FROM galeri ORDER BY tanggal DESC";
+        $hasil = $conn->query($sql);
+
+        // Variabel penanda untuk item pertama
+        $active = true;
+
+        while ($row = $hasil->fetch_assoc()) {
+            // Logika: Jika ini putaran pertama, pakai class "active". 
+            // Jika bukan, kosongkan.
+            $status = ($active) ? "active" : "";
+        ?>
+            
+            <div class="carousel-item <?= $status ?>">
+                <img src="<?= $row["gambar"] ?>" class="d-block w-100" alt="<?= $row["judul"] ?>">
             </div>
-        </div>
+
+        <?php
+            // Set active jadi false agar gambar kedua, ketiga, dst tidak ada class active
+            $active = false; 
+        } 
+        ?>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
     </section>
     <section id="Schedule" class="text-center p-5">
         <h1 class="fw bold display-4 pb-3">scedule</h1>
