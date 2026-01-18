@@ -227,37 +227,37 @@ include "koneksi.php";
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  latar belakang pendidikan
+                  motor 1000cc pertama
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>udinus semarang </strong> saya adalah mhs udinus semester 3 
+                  <strong>Sepeda motor dengan kapasitas mesin mendekati atau mencapai 1000cc pertama </strong> mulai diproduksi sekitar tahun 1914. Meskipun tidak ada model tunggal yang secara universal diakui sebagai satu-satunya "yang pertama" di era awal tersebut, motor bermesin besar mulai bermunculan untuk kebutuhan touring dan performa tinggi pada awal abad ke-20. 
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
-                  Accordion Item #2
+                  motor matic pertama
                 
                 </button>
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Vespa Corsa 125 (sering disebut Vespa PK125)</strong> adalah motor matic pertama yang mengaspal di Indonesia, diproduksi oleh PT Dan Motor Indonesia sejak 1983 dan dipasarkan resmi tahun 1991. Motor ini menggunakan mesin 2-tak 121,2 cc, memiliki transmisi otomatis, dan merupakan pelopor skutik sebelum era Yamaha Nouvo atau Mio. 
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Accordion Item #3
+                motor 4 tak pertama
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <strong>This is the third item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                  <strong>Nicolaus August Otto</strong> Mesin 4-tak pertama di dunia berhasil diciptakan oleh Nicolaus August Otto pada tahun 1861. Secara historis, motor 4-tak pertama Yamaha adalah Yamaha XS-1 (XS650) yang diperkenalkan pada tahun 1970. Sementara di Indonesia, motor bebek 4-tak pertama Yamaha adalah Crypton (1997), sedangkan pionir 4-tak secara umum sering dikaitkan dengan Binter Joy. 
                 </div>
               </div>
             </div>
